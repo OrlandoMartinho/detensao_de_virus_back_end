@@ -97,9 +97,9 @@ connection.connect(async (err) => {
       )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;`,
   
       `CREATE TABLE IF NOT EXISTS dados_dos_sites(id_dado_do_site int not null auto_increment primary key,
-        id_site int DEFAULT NULL
+        id_usuario INT DEFAULT null
       )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;`,
-  
+   
       `CREATE TABLE IF NOT EXISTS sites(id_site int not null auto_increment primary key,
         nome varchar(255) DEFAULT NULL,
         url TEXT DEFAULT NULL,
