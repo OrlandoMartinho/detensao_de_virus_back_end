@@ -84,7 +84,7 @@ const sitesController = {
         const { accessToken, id_site } = req.body;
         const id_usuario = token.usuarioId(accessToken);
         
-        if(!id_bomba_favorita||!accessToken){
+        if(!id_site||!accessToken){
             return res.status(400).json({Mensagem:"Complete bem os campos"})
         }
         if (!id_usuario) {
@@ -99,7 +99,7 @@ const sitesController = {
             }
 
             if (result.length > 0) {
-                return res.status(200).json({ Site: result[0] });
+                return res.status(200).json(  result[0] );
             } else {
                 return res.status(404).json({ Mensagem: "site não encontrada" });
             }
