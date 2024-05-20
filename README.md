@@ -2,8 +2,6 @@
 
  Este é o repositório do backend do aplicativo ######, uma extensão de navegador para proteção de dados.
 
-
-
 ## Configuração
 
 1. Certifique-se de ter o Node.js instalado em sua máquina.
