@@ -137,7 +137,7 @@ Esta pasta contém a documentação do projeto, incluindo diagramas de classes e
   }
   ```
 
-### 2. Apagar Usuário
+### 2. Apagar dados de navegação de um site
 
 - **Rota**: `DELETE /dados_de_navegacao/`
 - **Descrição**: Permite apagar um usuário.
