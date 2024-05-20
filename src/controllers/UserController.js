@@ -24,12 +24,11 @@ const UsersController = {
                 console.log(" Erro:"+err.message)
                 return res.status(500).json({Mensagem:"Erro interno do servidor"})
             } 
-
+          
             if(result.length>0){
                 const accessToken = jwt.sign({ id_usuario: result[0].id_usuario,nome: result[0].nome,protecao:result[0].protecao}, secretKey.secretKey);
                 return res.status(200).json({Mensagem:"Usuário já está cadastrado",accessToken:accessToken,protecao:0}) 
             }
-        
             const createQuery = "INSERT INTO usuarios (nome) VALUES (?)";
                         
             db.query(createQuery,[nome],(err,resultt)=>{
@@ -38,73 +37,48 @@ const UsersController = {
                     console.log("Erro :"+err)
                     return res.status(500).json({Mensagem:"Erro interno do servidor "})
                 }
-                            
-                const accessToken = jwt.sign({ id_usuario: result.insertId,nome:nome,protecao:0}, secretKey.secretKey);
-
-                const updateQuery = 'UPDATE usuarios SET token = ? WHERE id_usuario = ?';
-                // Parâmetros para a consulta SQL
-                const params = [accessToken,result.insertId];
-                // Executar a consulta SQL
-                db.query(updateQuery, params, (err, result) => {
-                    if (err) {
-                        console.error('Erro ao atualizar usuário:', err);
-                        return res.status(500).json({ Mensagem: "Erro interno do servidor" });   
-                    }
+                   console.log(nome)           
+                   const accessToken = jwt.sign({ id_usuario: resultt.insertId,nome:nome,protecao:0}, secretKey.secretKey);
 
                    return res.status(201).json({ Mensagem: "Usuário cadastrado com sucesso",accessToken:accessToken,protecao:0});
-
-            })
-                 
+    
+             })
         })
-    })
     },
     eliminarUsuario: async (req, res) => {
-        try {
-            const { accessToken } = req.body;
-            const id_usuario = await token.usuarioId(accessToken);
+        const { accessToken } = req.body;
+        const id_usuario = await token.usuarioId(accessToken);
     
             // Verifica se o ID do usuário é válido
-            if (!id_usuario || !(await token.verificarTokenUsuario(accessToken))) {
-                return res.status(401).json({ mensagem: 'Token inválido' });
-            }
-    
+        if (!id_usuario){
+            return res.status(401).json({ mensagem: 'Token inválido' });
+        }
+        console.log(id_usuario)
             // Query para eliminar o usuário da tabela usuarios
-            const deleteUsuarioQuery = 'DELETE FROM usuarios WHERE id_usuario = ?';
+        const deleteUsuarioQuery = 'DELETE FROM usuarios WHERE id_usuario = ?';
     
             // Executa a query para eliminar o usuário
-            db.query(deleteUsuarioQuery, [id_usuario], (err, result) => {
-                if (err) {
-                    console.error('Erro ao eliminar usuário:', err);
-                    return res.status(500).json({ mensagem: 'Erro ao eliminar usuário', erro: err });
-                }
+        db.query(deleteUsuarioQuery, [id_usuario], (err, result) => {
+            if (err) {
+                console.error('Erro ao eliminar usuário:', err);
+                return res.status(500).json({ mensagem: 'Erro ao eliminar usuário', erro: err });
+            }
     
                 // Verifica se o usuário foi eliminado com sucesso
-                if (result.affectedRows === 0) {
-                    return res.status(404).json({ mensagem: 'Usuário não encontrado' });
-                }
-              const email=token.usuarioEmail(accessToken)
-              console.log(email)
-                db.query('DELETE FROM codigos_verificacao where email =  ?',[email],(err,result)=>{
-                    if(err){
-                        console.log('Erro'+err)
-                        return res.status(500).json({ mensagem: 'Erro interno do servidor' });
-                    }
-                }) 
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ mensagem: 'Usuário não encontrado' });
+            }
              return  res.status(200).json({ mensagem: 'Usuário eliminado com sucesso' });
-            });
-        } catch (err) {
-            console.error('Erro ao eliminar usuário:', err);
-           return res.status(500).json({ mensagem: 'Erro interno do servidor ao eliminar usuário' });
-        }
+        })
     },
     gerirProtecao: async (req, res) => {
         const { accessToken } = req.body;
     
-        try {
+   
             const id_usuario = await token.usuarioId(accessToken);
     
             // Verifica se o ID do usuário é válido
-            if (!id_usuario || !(await token.verificarTokenUsuario(accessToken))) {
+            if (!id_usuario) {
                 return res.status(401).json({ mensagem: 'Token inválido' });
             }
     
@@ -134,10 +108,7 @@ const UsersController = {
                     return res.status(201).json({ mensagem: "Proteção atualizada com sucesso", accessToken: novoAccessToken, protecao: novoValorProtecao });
                 });
             });
-        } catch (error) {
-            console.error('Erro:', error.message);
-            return res.status(500).json({ mensagem: "Erro interno do servidor" });
-        }
+
     }
     
     ,

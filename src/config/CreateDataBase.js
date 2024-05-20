@@ -87,12 +87,13 @@ connection.connect(async (err) => {
 
     // Conectar ao banco de dados específico
     connection.changeUser({ database: dbConfig.database });
-   
+    
     // Definir as consultas CREATE TABLE para cada tabela
     const createTableQueries = [
       `CREATE TABLE IF NOT EXISTS usuarios(id_usuario int not null auto_increment primary key,
         nome varchar(45) default null,
-        protecao INT DEFAULT 0
+        protecao INT DEFAULT 0,
+        token TEXT DEFAULT null
       )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;`,
   
       `CREATE TABLE IF NOT EXISTS dados_dos_sites(id_dado_do_site int not null auto_increment primary key,
