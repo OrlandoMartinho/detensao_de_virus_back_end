@@ -29,5 +29,5 @@ const HOST = process.env.HOST||port.HOST
 // Inicializando o servidor
 app.listen(PORT,HOST, () => {
   console.log(`Servidor rodando em http://${HOST}:${PORT}/`);
-  
+
 });
