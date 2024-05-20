@@ -44,3 +44,82 @@ Os arquivos de configuração podem ser encontrados na pasta `private`.
 #### Na pasta `docs`
 
 Esta pasta contém a documentação do projeto, incluindo diagramas de classes e diagramas ER.
+
+## Rotas de Usuário
+
+### 1. Cadastrar Usuário
+
+- **Rota**: `POST /usuarios/`
+- **Descrição**: Permite que um usuário receba um código de verificação para autenticação.
+- **Corpo da Requisição**: JSON contendo o email do usuário.
+  ```json
+  {
+    "nome": "exemplo"
+  }
+  ```
+
+### 2. Apagar Usuário
+
+- **Rota**: `DELETE /usuarios/`
+- **Descrição**: Permite apagar um usuário.
+- **Corpo da Requisição**: JSON contendo o token do usuário.
+  ```json
+  {
+    "accessToken": "mvdlmkv"
+  }
+
+### 3. Gerir proteção
+
+- **Rota**: `PUT /usuarios/`
+- **Descrição**: Permite hablitar ou desablitar usuário.
+- **Corpo da Requisição**: JSON contendo o token do usuário.
+  ```json
+  {
+    "accessToken": "mvdlmkv"
+  }
+
+
+## Rotas dos sites
+
+### Cadastrar um site
+- **Rota**: `POST /sites/cadastrar`
+- **Descrição**: Permite para cadastrar um site.
+- **Corpo da Requisição**: JSON contendo o nome do usuario.
+  ```json
+  {
+    "accessToken":"ddddddd",
+    "url":"www.youtube.com"
+    "nome": "youtube"
+  }
+ 
+### Rota para cadastrar um site
+
+- **Rota**: `POST /sites/`
+- **Descrição**: Permite listar todos os  site.
+- **Corpo da Requisição**: JSON contendo o nome do usuario.
+  ```json
+  {
+    "accessToken":"ddddddd"
+  }
+
+### Rota para obter um site
+
+- **Rota**: `POST /sites/obter_por_id`
+- **Descrição**: Permite obter dados de um site.
+- **Corpo da Requisição**: JSON contendo o id_site eo token do usuario.
+  ```json
+  {
+    "accessToken":"ddddddd",
+    "id_site":"1"
+  }
+### Rota para eliminar um site
+
+- **Rota**: `DELETE /sites/`
+- **Descrição**: Permite eliminar um site.
+- **Corpo da Requisição**: JSON contendo o nome do usuario.
+  ```json
+  {
+    "accessToken":"ddddddd",
+    "id_site":"1"
+  }
+  
