@@ -81,7 +81,7 @@ Esta pasta contém a documentação do projeto, incluindo diagramas de classes e
 
 ## Rotas dos sites
 
-### Cadastrar um site
+### 1. Cadastrar um site
 - **Rota**: `POST /sites/cadastrar`
 - **Descrição**: Permite para cadastrar um site.
 - **Corpo da Requisição**: JSON contendo o nome do usuario.
@@ -92,7 +92,7 @@ Esta pasta contém a documentação do projeto, incluindo diagramas de classes e
     "nome": "youtube"
   }
  
-### Rota para cadastrar um site
+### 2. Rota para cadastrar um site
 
 - **Rota**: `POST /sites/`
 - **Descrição**: Permite listar todos os  site.
@@ -102,7 +102,7 @@ Esta pasta contém a documentação do projeto, incluindo diagramas de classes e
     "accessToken":"ddddddd"
   }
 
-### Rota para obter um site
+### 3. Rota para obter um site
 
 - **Rota**: `POST /sites/obter_por_id`
 - **Descrição**: Permite obter dados de um site.
@@ -112,7 +112,7 @@ Esta pasta contém a documentação do projeto, incluindo diagramas de classes e
     "accessToken":"ddddddd",
     "id_site":"1"
   }
-### Rota para eliminar um site
+### 4. Rota para eliminar um site
 
 - **Rota**: `DELETE /sites/`
 - **Descrição**: Permite eliminar um site.
