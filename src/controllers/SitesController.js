@@ -52,7 +52,7 @@ const sitesController = {
                             return res.status(500).json({mensagem:"Erro interno do servidor"})
                         }
 
-                            return res.status(200).json({mensagem:"Site  registrado com sucesso"})
+                            return res.status(200).json({mensagem:"Site  registrado com sucesso",id_site:results.insertId,seguro:seguro})
 
                         })
                 }
