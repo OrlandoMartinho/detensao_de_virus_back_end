@@ -123,3 +123,41 @@ Esta pasta contém a documentação do projeto, incluindo diagramas de classes e
     "id_site":"1"
   }
   
+## Rotas dos dados de navegação
+
+### 1. Cadastrar dados de navegação
+
+- **Rota**: `POST /dados_de_navecacao/adicionar`
+- **Descrição**: Permite que cadastra dados de navegação de um site.
+- **Corpo da Requisição**: JSON contendo o token ,o id_site e os demais dados deste site.
+  ```json
+  {
+    "id_site": "exemplo",
+    "accessToken":"kgkklklf",
+    "exemplo1":"exemplo1"
+    "exemplo2":"exemplo2"
+  }
+  ```
+
+### 2. Apagar Usuário
+
+- **Rota**: `DELETE /dados_de_navegacao/`
+- **Descrição**: Permite apagar um usuário.
+- **Corpo da Requisição**: JSON contendo o token do usuárioe o id_site.
+  ```json
+  {
+    "accessToken": "mvdlmkv",
+    "id_site":""
+  }
+
+### 3. listar dados de navegação
+
+- **Rota**: `POST /dados_de_navegacao/listar`
+- **Descrição**: Permite listar os dados de navegação de um site.
+- **Corpo da Requisição**: JSON contendo o token do usuário.
+  ```json
+  {
+    "accessToken": "mvdlmkv",
+    "id_site":"0"
+  }
+
