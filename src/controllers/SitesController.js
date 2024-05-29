@@ -13,8 +13,8 @@ const sitesController = {
       
                 let seguro = 0
                 let verificado = 0
-                
-                if(token.usuarioProtecao(accessToken)===1){
+                console.log(token.usuarioProtecao(accessToken))
+                if(token.usuarioProtecao(accessToken)===0){
                     verificaURLVirusTotal(url)            
                         .then(result => {
                             if (result === true) {
