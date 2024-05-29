@@ -12,9 +12,9 @@ async function verificaURLVirusTotal(url) {
         const response = await axios.get(urlVirusTotal, { params });
         const result = response.data;
 
-        if (result.response_code === 1) {
+        if (result.response_code === 0) {
             const numberOfAnalyses = result.total;
-            console.log(`A URL foi analisada por ${numberOfAnalises} mecanismos de verificação de malware.`);
+            console.log(`A URL foi analisada por ${numberOfAnalyses} mecanismos de verificação de malware.`);
             
             if (result.positives > 0) {
                 return false; // URL é considerada insegura

@@ -10,9 +10,11 @@ const sitesController = {
                 if(!accessToken||!nome||!url||!id_usuario){
                     return res.status(400).json({Mensagem:"Verifique os campos e tente novamente"})
                 }
+      
                 let seguro = 0
                 let verificado = 0
-                if(token.usuarioProtecao(accessToken)===0){
+                
+                if(token.usuarioProtecao(accessToken)===1){
                     verificaURLVirusTotal(url)            
                         .then(result => {
                             if (result === true) {
@@ -34,7 +36,7 @@ const sitesController = {
                                     return res.status(500).json({mensagem:"Erro interno do servidor"})
                                 }
 
-                                return res.status(200).json({mensagem:"Site  registrado com sucesso"})
+                                return res.status(200).json({mensagem:"Site  registrado com sucesso",verificado:verificado,seguro:seguro})
 
                             })
 
