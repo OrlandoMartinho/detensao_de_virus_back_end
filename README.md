@@ -47,7 +47,7 @@ Esta pasta contém a documentação do projeto, incluindo diagramas de classes e
 
 ### 1. Cadastrar Usuário
 
-- **Rota**: `POST /usuarios/`
+- **Rota**: `POST /usuarios`
 - **Descrição**: Permite que um usuário receba um código de verificação para autenticação.
 - **Corpo da Requisição**: JSON contendo o email do usuário.
   ```json

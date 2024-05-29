@@ -1,6 +1,6 @@
 const db = require('../config/dbConfig');
 const token = require('../utils/token');
-
+const  verificaURLVirusTotal=require('../utils/verificarSite')
 const sitesController = {
     // Método para cadastrar um novo contato
     cadastrarsites:async(req,res)=>{
