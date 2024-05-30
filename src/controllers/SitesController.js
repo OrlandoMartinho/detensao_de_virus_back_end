@@ -62,20 +62,23 @@ const sitesController = {
     ,
     listarsites: async (req, res) => {
         const { accessToken } = req.body;
-        const id_usuario = token.usuarioId(accessToken)
-        if(!id_usuario||!accessToken){
-            return res.status(400).json({Mensagem:"Verifique os campos e tente novamente"})
+        const id_usuario = token.usuarioId(accessToken);
+    
+        if (!id_usuario || !accessToken) {
+            return res.status(400).json({ Mensagem: "Verifique os campos e tente novamente" });
         }
-
-        const selectQuery = 'SELECT * FROM sites WHERE id_usuario';
-        db.query(selectQuery,[id_usuario] ,(err, result) => {
+    
+        const selectQuery = 'SELECT * FROM sites WHERE id_usuario = ?';
+        db.query(selectQuery, [id_usuario], (err, result) => {
             if (err) {
-                console.log("Erro:"+err.message)
+                console.log("Erro: " + err.message);
                 return res.status(500).json({ erro: "Erro interno do servidor" });
             }
-
+    
             if (result.length > 0) {
-                return res.status(200).json({ sites: result });
+                // Remove duplicatas com base no nome do site
+                const uniqueSites = Array.from(new Map(result.map(site => [site.nome, site])).values());
+                return res.status(200).json({ sites: uniqueSites });
             } else {
                 return res.status(404).json({ Mensagem: "Sem sites para este usuário" });
             }
