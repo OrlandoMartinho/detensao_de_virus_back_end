@@ -69,7 +69,17 @@ Esta pasta contém a documentação do projeto, incluindo diagramas de classes e
 ### 3. Gerir proteção
 
 - **Rota**: `PUT /usuarios/`
-- **Descrição**: Permite hablitar ou desablitar usuário.
+- **Descrição**: Permite hablitar ou desablitar proteção do usuário.
+- **Corpo da Requisição**: JSON contendo o token do usuário.
+  ```json
+  {
+    "accessToken": "mvdlmkv"
+  }
+
+### 4. Pesquisar Usuario
+
+- **Rota**: `POST /usuarios/pesquisar`
+- **Descrição**: Retorna os dados de um usuário.
 - **Corpo da Requisição**: JSON contendo o token do usuário.
   ```json
   {

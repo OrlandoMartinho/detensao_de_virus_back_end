@@ -2,7 +2,7 @@ const db = require('../config/dbConfig');
 const jwt = require('jsonwebtoken');
 const secretKey = require('../private/secretKey.json');
 const token = require('../utils/token');
-
+const dbPromise = db.promise();
 
 
 
@@ -110,11 +110,14 @@ const UsersController = {
             });
 
     }
-    
     ,
-
-
-
+    obterUmUser:async(req,res)=>{
+        const { accessToken } = req.body;
+        const id_usuario=token.usuarioId(accessToken)
+        const selectQuery = 'SELECT * FROM usuarios WHERE id_usuario = ?';
+        const [usuario] =await dbPromise.query(selectQuery, [id_usuario]) 
+        return  res.status(200).json({ usuario:usuario[0] });   
+    }
 
     }
 

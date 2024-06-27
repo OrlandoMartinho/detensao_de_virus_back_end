@@ -8,5 +8,7 @@ router.post('/', UsersController.cadastrarUsuario);
 router.delete('/',UsersController.eliminarUsuario) 
 //Rota para gerir a protecao
 router.put('/',UsersController.gerirProtecao)
+//Rota para obter um usuario
+router.post('/pesquisar',UsersController.obterUmUser)
 
 module.exports = router;
